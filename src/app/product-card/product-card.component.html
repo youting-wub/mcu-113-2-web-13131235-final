@@ -1,0 +1,14 @@
+<img [src]="photoUrl" />
+<div class="content">
+  <strong [class.hidden]="!isShow">{{ productName }} </strong>
+</div>
+<div>{{ author }}</div>
+<div class="company">
+  <span>{{ company }}</span>
+  <span>$1,580,00</span>
+</div>
+<div class="button">
+  <button type="button" (click)="onSetDisplay(true)">明細</button>
+
+  <button type="button" class="edit">加入購物車</button>
+</div>
