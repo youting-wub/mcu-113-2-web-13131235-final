@@ -1,9 +1,4 @@
-import {
-  booleanAttribute,
-  Component,
-  Input,
-  numberAttribute,
-} from '@angular/core';
+import { booleanAttribute, Component, HostBinding, Input } from '@angular/core';
 
 @Component({
   selector: 'app-product-card',
@@ -26,6 +21,9 @@ export class ProductCardComponent {
 
   @Input()
   photoUrl!: string;
+
+  @HostBinding('class')
+  class = 'app-product-card';
 
   onSetDisplay(isShow: boolean): void {
     this.isShow = isShow;
