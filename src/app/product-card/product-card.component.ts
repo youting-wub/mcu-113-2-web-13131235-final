@@ -1,4 +1,11 @@
-import { booleanAttribute, Component, HostBinding, Input } from '@angular/core';
+import {
+  booleanAttribute,
+  Component,
+  HostBinding,
+  input,
+  Input,
+  model,
+} from '@angular/core';
 
 @Component({
   selector: 'app-product-card',
@@ -7,25 +14,20 @@ import { booleanAttribute, Component, HostBinding, Input } from '@angular/core';
   styleUrl: './product-card.component.scss',
 })
 export class ProductCardComponent {
-  @Input()
-  productName!: string;
+  readonly productName = input<string>();
 
-  @Input()
-  company!: string;
+  readonly company = input<string>();
 
-  @Input()
-  author!: string;
+  readonly author = input<string>();
 
-  @Input({ transform: booleanAttribute })
-  isShow!: boolean;
+  readonly isShow = model.required<boolean>();
 
-  @Input()
-  photoUrl!: string;
+  readonly photoUrl = input<string>();
 
   @HostBinding('class')
   class = 'app-product-card';
 
   onSetDisplay(isShow: boolean): void {
-    this.isShow = isShow;
+    this.isShow.set(isShow);
   }
 }
