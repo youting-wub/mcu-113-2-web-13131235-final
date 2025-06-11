@@ -5,6 +5,7 @@
   [company]="product.company"
   [isShow]="product.isShow"
   [photoUrl]="product.photoUrl"
+  (view)="view.emit(product)"
 >
 </app-product-card>
 }

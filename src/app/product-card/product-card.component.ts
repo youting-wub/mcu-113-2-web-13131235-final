@@ -5,6 +5,7 @@ import {
   input,
   Input,
   model,
+  output,
 } from '@angular/core';
 
 @Component({
@@ -20,14 +21,14 @@ export class ProductCardComponent {
 
   readonly author = input<string>();
 
-  readonly isShow = model.required<boolean>();
+  readonly isShow = input.required<boolean, string | boolean>({
+    transform: booleanAttribute,
+  });
 
   readonly photoUrl = input<string>();
 
+  readonly view = output<void>();
+
   @HostBinding('class')
   class = 'app-product-card';
-
-  onSetDisplay(isShow: boolean): void {
-    this.isShow.set(isShow);
-  }
 }

@@ -3,6 +3,7 @@ export class Product {
     if (!initData) return;
     Object.assign(this, initData);
   }
+
   name!: string;
   authors!: string;
   company!: string;
