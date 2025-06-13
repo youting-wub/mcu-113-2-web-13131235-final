@@ -27,6 +27,8 @@ export class ProductCardComponent {
 
   readonly photoUrl = input<string>();
 
+  readonly edit = output<void>();
+
   readonly view = output<void>();
 
   @HostBinding('class')

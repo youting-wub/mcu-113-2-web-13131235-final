@@ -50,6 +50,10 @@ export class ProductPageComponent {
     }),
   ];
   onView(product: Product): void {
-    this.router.navigate(['product']);
+    this.router.navigate(['product', 'view']);
+  }
+
+  onEdit(product: Product): void {
+    this.router.navigate(['product', 'form']);
   }
 }
