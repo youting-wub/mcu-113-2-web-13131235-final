@@ -24,7 +24,7 @@ export class PaginationComponent {
     transform: numberAttribute,
   });
 
-  readonly pageIndex = model.required();
+  readonly pageIndex = model.required<number>();
 
   readonly range = computed(() => {
     const length = Math.ceil(this.totalCount() / this.pageSize());
