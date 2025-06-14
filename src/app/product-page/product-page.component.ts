@@ -15,10 +15,9 @@ export class ProductPageComponent implements OnInit {
 
   products: Product[] = [];
 
-  productService!: ProductService;
+  productService = inject(ProductService);
 
   ngOnInit(): void {
-    this.productService = new ProductService();
     this.products = this.productService.getList();
   }
 
