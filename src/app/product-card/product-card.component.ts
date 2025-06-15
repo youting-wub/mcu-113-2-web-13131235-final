@@ -5,6 +5,7 @@ import {
   input,
   Input,
   model,
+  numberAttribute,
   output,
 } from '@angular/core';
 
@@ -15,6 +16,10 @@ import {
   styleUrl: './product-card.component.scss',
 })
 export class ProductCardComponent {
+  readonly id = input.required<number, string | number>({
+    transform: numberAttribute,
+  });
+
   readonly productName = input<string>();
 
   readonly company = input<string>();

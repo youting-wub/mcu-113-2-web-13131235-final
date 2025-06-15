@@ -1,6 +1,7 @@
+import { Product } from './../models/product';
 import { ProductService } from './../services/product.service';
 import { Component, inject, OnInit } from '@angular/core';
-import { Product } from '../models/product';
+
 import { ProductCardListComponent } from '../product-card-list/product-card-list.component';
 import { Router } from '@angular/router';
 import { PaginationComponent } from '../pagination/pagination.component';
@@ -29,11 +30,11 @@ export class ProductPageComponent implements OnInit {
   }
 
   onView(product: Product): void {
-    this.router.navigate(['product', 'view']);
+    this.router.navigate(['product', 'view', product.id]);
   }
 
   onEdit(product: Product): void {
-    this.router.navigate(['product', 'form']);
+    this.router.navigate(['product', 'form', product.id]);
   }
 
   onPageIndexChange(pageIndex: number): void {
@@ -42,12 +43,11 @@ export class ProductPageComponent implements OnInit {
   }
 
   private getProducts(): void {
-    const { data, count } = this.productService.getList(
-      undefined,
-      this.pageIndex,
-      this.pageSize
-    );
-    this.products = data;
-    this.totalCount = count;
+    this.productService
+      .getList(undefined, this.pageIndex, this.pageSize)
+      .subscribe(({ data, count }) => {
+        this.products = data;
+        this.totalCount = count;
+      });
   }
 }
