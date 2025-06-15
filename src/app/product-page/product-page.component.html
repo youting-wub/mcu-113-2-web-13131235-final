@@ -4,8 +4,7 @@
   (edit)="onEdit($event)"
 ></app-product-card-list>
 <app-pagination
-  [pageIndex]="pageIndex"
+  [(pageIndex)]="pageIndex"
   [pageSize]="pageSize"
   [totalCount]="totalCount"
-  (pageIndexChange)="onPageIndexChange($event)"
 ></app-pagination>

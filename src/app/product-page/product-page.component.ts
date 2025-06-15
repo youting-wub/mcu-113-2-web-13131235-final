@@ -5,6 +5,7 @@ import { Component, inject, OnInit } from '@angular/core';
 import { ProductCardListComponent } from '../product-card-list/product-card-list.component';
 import { Router } from '@angular/router';
 import { PaginationComponent } from '../pagination/pagination.component';
+import { BehaviorSubject, merge, switchMap } from 'rxjs';
 
 @Component({
   selector: 'app-product-page',
@@ -19,14 +20,29 @@ export class ProductPageComponent implements OnInit {
 
   productService = inject(ProductService);
 
-  pageIndex = 1;
+  private readonly pageIndex$ = new BehaviorSubject(1);
+  get pageIndex() {
+    return this.pageIndex$.value;
+  }
+  set pageIndex(value: number) {
+    this.pageIndex$.next(value);
+  }
 
   pageSize = 5;
 
   totalCount = 0;
 
   ngOnInit(): void {
-    this.getProducts();
+    this.pageIndex$
+      .pipe(
+        switchMap(() =>
+          this.productService.getList(undefined, this.pageIndex, this.pageSize)
+        )
+      )
+      .subscribe(({ data, count }) => {
+        this.products = data;
+        this.totalCount = count;
+      });
   }
 
   onView(product: Product): void {
@@ -35,19 +51,5 @@ export class ProductPageComponent implements OnInit {
 
   onEdit(product: Product): void {
     this.router.navigate(['product', 'form', product.id]);
-  }
-
-  onPageIndexChange(pageIndex: number): void {
-    this.pageIndex = pageIndex;
-    this.getProducts();
-  }
-
-  private getProducts(): void {
-    this.productService
-      .getList(undefined, this.pageIndex, this.pageSize)
-      .subscribe(({ data, count }) => {
-        this.products = data;
-        this.totalCount = count;
-      });
   }
 }
