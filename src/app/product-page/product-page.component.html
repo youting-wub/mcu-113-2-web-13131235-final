@@ -1,10 +1,10 @@
 <app-product-card-list
-  [products]="products"
+  [products]="products()"
   (view)="onView($event)"
   (edit)="onEdit($event)"
 ></app-product-card-list>
 <app-pagination
   [(pageIndex)]="pageIndex"
   [pageSize]="pageSize"
-  [totalCount]="totalCount"
+  [totalCount]="totalCount()"
 ></app-pagination>
