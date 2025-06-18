@@ -5,7 +5,13 @@ import { Component, inject, OnInit } from '@angular/core';
 import { ProductCardListComponent } from '../product-card-list/product-card-list.component';
 import { Router } from '@angular/router';
 import { PaginationComponent } from '../pagination/pagination.component';
-import { BehaviorSubject, merge, switchMap } from 'rxjs';
+import {
+  BehaviorSubject,
+  combineLatest,
+  merge,
+  startWith,
+  switchMap,
+} from 'rxjs';
 
 @Component({
   selector: 'app-product-page',
@@ -33,7 +39,7 @@ export class ProductPageComponent implements OnInit {
   totalCount = 0;
 
   ngOnInit(): void {
-    this.pageIndex$
+    combineLatest([this.pageIndex$.pipe(startWith(undefined))])
       .pipe(
         switchMap(() =>
           this.productService.getList(undefined, this.pageIndex, this.pageSize)
