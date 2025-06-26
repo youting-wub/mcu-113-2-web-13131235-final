@@ -12,6 +12,13 @@
   flex-direction: column;
   gap: 10px;
   border: solid 1px black;
+
+  .form-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
   .form-column {
     display: flex;
     justify-content: space-between;
@@ -31,6 +38,9 @@
       font-size: 20;
     }
   }
+  .error-message {
+    color: red;
+  }
 }
 .form-action {
   display: flex;
@@ -43,5 +53,16 @@
     cursor: pointer;
     background-color: #007bff;
     color: white;
+
+    &.save {
+      background-color: #007bff;
+      color: white;
+
+      &:disabled {
+        background-color: #ccc;
+        color: #999;
+        cursor: not-allowed;
+      }
+    }
   }
 }

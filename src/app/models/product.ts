@@ -5,7 +5,7 @@ export class Product {
   }
   id!: string;
   name!: string;
-  authors!: string;
+  authors!: string[];
   company!: string;
   isShow!: boolean;
   photoUrl!: string;

@@ -10,7 +10,7 @@ export class ProductService {
     new Product({
       id: '1',
       name: 'A 產品',
-      authors: '作者A、作者B、作者C',
+      authors: ['作者A、作者B、作者C'],
       company: '博碩文化',
       isShow: true,
       photoUrl: 'https://api.fnkr.net/testimg/200x200/DDDDDD/999999/?text=img',
@@ -18,7 +18,7 @@ export class ProductService {
     new Product({
       id: '2',
       name: 'B 產品',
-      authors: '作者A、作者B、作者C',
+      authors: ['作者A、作者B、作者C'],
       company: '博碩文化',
       isShow: true,
       photoUrl: 'https://api.fnkr.net/testimg/200x200/DDDDDD/999999/?text=img',
@@ -26,7 +26,7 @@ export class ProductService {
     new Product({
       id: '3',
       name: 'C 產品',
-      authors: '作者A、作者B、作者C',
+      authors: ['作者A、作者B、作者C'],
       company: '博碩文化',
       isShow: true,
       photoUrl: 'https://api.fnkr.net/testimg/200x200/DDDDDD/999999/?text=img',
@@ -34,7 +34,7 @@ export class ProductService {
     new Product({
       id: '4',
       name: 'D 產品',
-      authors: '作者A、作者B、作者C',
+      authors: ['作者A、作者B、作者C'],
       company: '博碩文化',
       isShow: true,
       photoUrl: 'https://api.fnkr.net/testimg/200x200/DDDDDD/999999/?text=img',
@@ -42,7 +42,7 @@ export class ProductService {
     new Product({
       id: '5',
       name: 'E 產品',
-      authors: '作者A、作者B、作者C',
+      authors: ['作者A、作者B、作者C'],
       company: '博碩文化',
       isShow: true,
       photoUrl: 'https://api.fnkr.net/testimg/200x200/DDDDDD/999999/?text=img',
@@ -50,7 +50,7 @@ export class ProductService {
     new Product({
       id: '6',
       name: 'F 產品',
-      authors: '作者A、作者B、作者C',
+      authors: ['作者A、作者B、作者C'],
       company: '博碩文化',
       isShow: true,
       photoUrl: 'https://api.fnkr.net/testimg/200x200/DDDDDD/999999/?text=img',
@@ -58,7 +58,7 @@ export class ProductService {
     new Product({
       id: '7',
       name: 'G 產品',
-      authors: '作者A、作者B、作者C',
+      authors: ['作者A、作者B、作者C'],
       company: '博碩文化',
       isShow: true,
       photoUrl: 'https://api.fnkr.net/testimg/200x200/DDDDDD/999999/?text=img',
@@ -66,7 +66,7 @@ export class ProductService {
     new Product({
       id: '8',
       name: 'H 產品',
-      authors: '作者A、作者B、作者C',
+      authors: ['作者A、作者B、作者C'],
       company: '博碩文化',
       isShow: true,
       photoUrl: 'https://api.fnkr.net/testimg/200x200/DDDDDD/999999/?text=img',
@@ -74,7 +74,7 @@ export class ProductService {
     new Product({
       id: '9',
       name: 'I 產品',
-      authors: '作者A、作者B、作者C',
+      authors: ['作者A、作者B、作者C'],
       company: '博碩文化',
       isShow: true,
       photoUrl: 'https://api.fnkr.net/testimg/200x200/DDDDDD/999999/?text=img',
@@ -82,7 +82,7 @@ export class ProductService {
     new Product({
       id: '10',
       name: 'J 產品',
-      authors: '作者A、作者B、作者C',
+      authors: ['作者A、作者B、作者C'],
       company: '博碩文化',
       isShow: true,
       photoUrl: 'https://api.fnkr.net/testimg/200x200/DDDDDD/999999/?text=img',
@@ -113,5 +113,18 @@ export class ProductService {
       }),
       delay(500)
     );
+  }
+  add(product: Readonly<Product>): Observable<Product> {
+    const id =
+      this._data.length === 0
+        ? 1
+        : Math.max(...this._data.map(({ id }) => +id)) + 1;
+    const newProduct = new Product({ ...product, id: id.toString() });
+    this._data.push(newProduct);
+    return of(newProduct);
+  }
+
+  update(product: Readonly<Product>): Observable<Product> {
+    throw new Error('Not implement');
   }
 }
