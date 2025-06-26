@@ -13,6 +13,11 @@ export class ProductRemoteService extends ProductService {
 
   private readonly httpClient = inject(HttpClient);
 
+  override getById(productId: number): Observable<Product> {
+    const url = `${this.url}/${productId}`;
+    return this.httpClient.get<Product>(url);
+  }
+
   override getList(
     name: string | undefined,
     index: number,
