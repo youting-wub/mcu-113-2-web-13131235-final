@@ -23,8 +23,14 @@ export class ProductRemoteService extends ProductService {
     index: number,
     size: number
   ): Observable<{ data: Product[]; count: number }> {
+    let query = { _page: index, _per_page: size } as {
+      name?: string;
+      _page: number;
+      _per_page: number;
+    };
+    if (name) query = { ...query, name };
     const params = new HttpParams({
-      fromObject: { _page: index, _per_page: size },
+      fromObject: query,
     });
     return this.httpClient
       .get<{ data: Product[]; item: number }>(this.url, { params })
