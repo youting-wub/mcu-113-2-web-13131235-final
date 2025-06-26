@@ -36,4 +36,7 @@ export class ProductRemoteService extends ProductService {
       .get<{ data: Product[]; item: number }>(this.url, { params })
       .pipe(map(({ data, item: count }) => ({ data, count })));
   }
+  override add(product: Readonly<Product>): Observable<Product> {
+    return this.httpClient.post<Product>(this.url, { ...product });
+  }
 }

@@ -1,45 +1,49 @@
-.container {
-  h2 {
-    border: solid 1px black;
-    text-align: center;
-    margin: 0;
-  }
-
-  margin: 10px;
-  padding-bottom: 10px;
-  width: 500px;
+.c {
   display: flex;
-  flex-direction: column;
-  gap: 10px;
-  border: solid 1px black;
 
-  .form-item {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .form-column {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-
-    > label,
-    > div {
-      flex-basis: 150px;
+  .container {
+    h2 {
+      border: solid 1px black;
       text-align: center;
-      font-size: 18;
-      font-weight: 400;
+      margin: 0;
     }
-    > input {
-      flex-grow: 1;
-      padding: 5px 10px;
-      margin: 10px;
-      font-size: 20;
+
+    margin: 10px;
+    padding-bottom: 10px;
+    width: 500px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    border: solid 1px black;
+
+    .form-item {
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
-  }
-  .error-message {
-    color: red;
+
+    .form-column {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      > label,
+      > div {
+        flex-basis: 150px;
+        text-align: center;
+        font-size: 18;
+        font-weight: 400;
+      }
+      > input {
+        flex-grow: 1;
+        padding: 5px 10px;
+        margin: 10px;
+        font-size: 20;
+      }
+    }
+    .error-message {
+      color: red;
+    }
   }
 }
 .form-action {

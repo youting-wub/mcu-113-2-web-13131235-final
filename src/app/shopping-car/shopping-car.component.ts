@@ -76,4 +76,8 @@ export class ShoppingCarComponent {
       : this.productService.add(formData);
     action$.subscribe(() => this.router.navigate(['products']));
   }
+
+  onAdd(): void {
+    this.router.navigate(['product', 'new']);
+  }
 }
