@@ -1,7 +1,8 @@
+import { Item } from './../../../node_modules/json-server/lib/service.d';
 import { Product } from './../models/product';
 import { inject, Injectable } from '@angular/core';
 import { ProductService } from './product.service';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { map, Observable } from 'rxjs';
 
 @Injectable({
@@ -17,8 +18,11 @@ export class ProductRemoteService extends ProductService {
     index: number,
     size: number
   ): Observable<{ data: Product[]; count: number }> {
+    const params = new HttpParams({
+      fromObject: { _page: index, _per_page: size },
+    });
     return this.httpClient
-      .get<Product[]>(this.url)
-      .pipe(map((data) => ({ data, count: data.length })));
+      .get<{ data: Product[]; item: number }>(this.url, { params })
+      .pipe(map(({ data, item: count }) => ({ data, count })));
   }
 }
