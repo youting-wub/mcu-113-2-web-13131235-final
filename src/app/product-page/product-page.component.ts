@@ -5,16 +5,8 @@ import { Component, computed, inject, OnInit, signal } from '@angular/core';
 import { ProductCardListComponent } from '../product-card-list/product-card-list.component';
 import { Router } from '@angular/router';
 import { PaginationComponent } from '../pagination/pagination.component';
-import {
-  BehaviorSubject,
-  combineLatest,
-  count,
-  merge,
-  single,
-  startWith,
-  switchMap,
-} from 'rxjs';
-import { rxResource, toSignal } from '@angular/core/rxjs-interop';
+
+import { rxResource } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-product-page',
@@ -49,18 +41,6 @@ export class ProductPageComponent {
     const { data } = this.data.value();
     return data;
   });
-  // ngOnInit(): void {
-  //   combineLatest([this.pageIndex$.pipe(startWith(undefined))])
-  //     .pipe(
-  //       switchMap(() =>
-  //         this.productService.getList(undefined, this.pageIndex, this.pageSize)
-  //       )
-  //     )
-  //     .subscribe(({ data, count }) => {
-  //       this.products = data;
-  //       this.totalCount = count;
-  //     });
-  // }
 
   onView(product: Product): void {
     this.router.navigate(['product', 'view', product.id]);

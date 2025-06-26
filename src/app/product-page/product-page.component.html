@@ -1,3 +1,8 @@
+<div class="toolbar">
+  <input type="text" placeholder="產品名稱查詢" formControl="searchControl" />
+  <button type="button">查尋</button>
+</div>
+
 <app-product-card-list
   [products]="products()"
   (view)="onView($event)"
