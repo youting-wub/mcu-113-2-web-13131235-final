@@ -22,7 +22,7 @@ export class ProductCardComponent {
 
   readonly company = input<string>();
 
-  readonly author = input<string>();
+  readonly author = input<string[]>();
 
   readonly isShow = input.required<boolean, string | boolean>({
     transform: booleanAttribute,
